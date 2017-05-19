@@ -5,7 +5,7 @@
   <title>HPlus Sport</title>
   <link rel="stylesheet" href="css/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script type="text/javascript" src="../jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="scripts/jquery-3.0.0.js"></script>
   <script> 
   
     $("document").ready( function() {
@@ -22,27 +22,28 @@
 function mainMenu () {
   var navItems = 4,
       nav = $("<ul>").addClass("product-menu"),
-      list,
-      icon,
-      link,
       i = 1;
 
 
   while (i <= navItems) {
     
-      $(nav).append("<li>").addClass("menu-list" + i)
-            .append("<div>").addClass("menu-icon" + i)
-            .append("<a>").addClass("menu-link" + i);
+      var list = $("<li>").addClass("menu-list menu-list" + i), 
+          icon = $("<div>"). addClass("menu-icon menu-icon" + i),
+          link = $ ("<a>").addClass("menu-link menu-link" + i);
 
-      $(nav).appendTo(".container");
-    
-    i += 1; 
+      list.append(icon);
+      list.append(link);
+      nav.append(list);
 
-  }
-   console.log(nav);
+      i += 1;
+      list = $(list).clone();
+
+  } 
+
+  $(nav).appendTo("#products div");
   
-  
-
+  console.log(nav);
+  debugger;
   $(".menu-link1").text("Show:");
   $(".menu-link2").attr("href","#").text("Vitamins");
   $(".menu-link3").attr("href","#").text("Mineral Water");
