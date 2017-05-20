@@ -13,43 +13,95 @@
       $("#products h2[data-type='vitamin']").css("background-color",  "darkgreen");
       $("#products h2[data-type='mineralwater']").css("background-color", "blue");
       $("#products h2[data-type='proteinbar']").css("background-color",  "purple");
-      mainMenu();  
-    }
-  
-  
-  ); 
+      
+      mainMenu();
+      
+      $(".product-menu")
+      
+        .on('change', ".menu-icon2" , function(e) {
 
-function mainMenu () {
-  var navItems = 4,
-      nav = $("<ul>").addClass("product-menu"),
-      i = 1;
+          var trigger = e.target;
+
+          if (trigger.classList.contains("checked")) {
+
+            $("ul.product-item").css({"display": "none"});
+            trigger.classList.remove("checked");
+          
+          }
+          
+          else {
+
+            trigger.classList.add("checked");
+            
+            console.log(trigger);
+            
+          }  
+
+        })
+
+        .on('change', "menu-icon3" , function(e) {
+
+          console.log(e.target);
+
+        })
+        .on('change', "menu-icon4" , function(e) {
+
+          console.log(e.target);
+
+        })
+       
+      });
+ 
+</script>
+<script>
+  function mainMenu () {
+    var navItems = 4,
+        nav = $("<ul>").addClass("product-menu"),
+        i = 1;
 
 
-  while (i <= navItems) {
+    while (i <= navItems) {
+      
+        var list = $("<li>").addClass("menu-list menu-list" + i), 
+            icon = $("<input>"). addClass("menu-icon menu-icon" + i),
+            link = $ ("<div>").addClass("menu-link menu-link" + i);
+
+        if (i <= 1) {
+
+          list.append(link);
+          nav.append(list);
+
+        }
+        else {
+
+          list.append(icon);
+          list.append(link);
+          nav.append(list);
+        
+        }
+
+        i += 1;
+      
+    } 
+
+    $(nav).appendTo("#products div");
     
-      var list = $("<li>").addClass("menu-list menu-list" + i), 
-          icon = $("<div>"). addClass("menu-icon menu-icon" + i),
-          link = $ ("<a>").addClass("menu-link menu-link" + i);
+    $(".product-menu").css({"list-style-type": "none", "postion": "relative", "padding": "0", 
+    "margin-bottom": "3px"});
+    $(".menu-list").css({"display": "inline-block"});
+    $(".menu-list2,.menu-list3,.menu-list4").css({"padding-left": "10px"});
+    
+    $(".menu-link").css({"font-weight": "normal", "color": "#000", "display": "inline-block"});
 
-      list.append(icon);
-      list.append(link);
-      nav.append(list);
+    $(".menu-link1").text("Show:");
+    $(".menu-link2").attr("href","#").text("Vitamins");
+    $(".menu-link3").attr("href","#").text("Mineral Water");
+    $(".menu-link4").attr("href","#").text("Protein Bar");
+    $(".menu-icon").attr("type", "checkbox");
 
-      i += 1;
-      list = $(list).clone();
+
 
   } 
-
-  $(nav).appendTo("#products div");
-  
-  console.log(nav);
-  debugger;
-  $(".menu-link1").text("Show:");
-  $(".menu-link2").attr("href","#").text("Vitamins");
-  $(".menu-link3").attr("href","#").text("Mineral Water");
-  $(".menu-link4").attr("href","#").text("Protein Bar");
-
-} 
 </script>
 </head>
 <body>
