@@ -100,17 +100,29 @@
 <script>
 
 function productPageLinks () {
- 
- $(".product-item").on("click dblclick", function (e) {
   
-  var prodNumber = e.currentTarget.dataset.prod_id,
-      data = e.currentTarget.children[1].innerHTML;
-      
-  console.log(data);
-  
+  $(".product-item").on("click dblclick", function (e) {
+    
+    var prodId = encodeURIComponent("prodId") + "=" + encodeURIComponent(e.currentTarget.dataset.prod_id),
+        prodName = encodeURIComponent("prodName") + "=" + encodeURIComponent(e.currentTarget.children[1].innerHTML),
+        href = "file:///C:/development/wellness_website/product.html?" + prodName + "&" +prodId; 
 
- });
+        updateProductPage(e, href);
+
+  });
+
+}
   
+function updateProductPage(evt, url) {
+
+      window.open(url);
+      //$(win).ready(function (e, callback) {
+      
+        //var newWin = win.document; 
+        
+        //newWin.getElementById("productName").innerHTML = callback;
+
+      //});
 
 }
 
