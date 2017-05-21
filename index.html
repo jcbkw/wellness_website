@@ -15,6 +15,7 @@
       $("#products h2[data-type='proteinbar']").css("background-color",  "purple");
       
       mainMenu();
+      productPageLinks();
       
       $(".product-menu")
       
@@ -95,6 +96,27 @@
 
   } 
 </script>
+
+<script>
+
+function productPageLinks () {
+ 
+ $(".product-item").on("click dblclick", function (e) {
+  
+  var prodNumber = e.currentTarget.dataset.prod_id,
+      data = e.currentTarget.children[1].innerHTML;
+      
+  console.log(data);
+  
+
+ });
+  
+
+}
+
+
+</script>
+
 </head>
 <body>
 
