@@ -45,6 +45,7 @@
 </script> 
 
 <script>
+
   function mainMenu () {
     var navItems = 4,
         nav = $("<ul>").addClass("product-menu"),
@@ -99,33 +100,41 @@
 
 <script>
 
-function productPageLinks () {
-  
-  $(".product-item").on("click dblclick", function (e) {
+  function productPageLinks () {
     
-    var prodId = encodeURIComponent("prodId") + "=" + encodeURIComponent(e.currentTarget.dataset.prod_id),
-        prodName = encodeURIComponent("prodName") + "=" + encodeURIComponent(e.currentTarget.children[1].innerHTML),
-        href = "file:///C:/development/wellness_website/product.html?" + prodName + "&" +prodId; 
-
-        updateProductPage(e, href);
-
-  });
-
-}
-  
-function updateProductPage(evt, url) {
-
-      window.open(url);
-      //$(win).ready(function (e, callback) {
+    /*$(".product-list").on("click", ".product-item" , function (e) {
       
-        //var newWin = win.document; 
-        
-        //newWin.getElementById("productName").innerHTML = callback;
+      var productItem = $(this),
+          parameters = {
+              prodId: productItem.data("prod_id"),
+              prodName: productItem.find(".product-name").text()
+          },
+          href = "product.html?" + $.param(parameters); 
 
-      //});
+          updateProductPage(href);
 
-}
+    });*/
 
+    $(".product-item").each(function () {
+      
+      var productItem = $(this),
+          parameters = {
+              prodId: productItem.data("prod_id"),
+              prodName: productItem.find(".product-name").text()
+          },
+          href = "product.html?" + $.param(parameters),
+          link = $("<a>").attr({"href": href});
+          link.css({'text-decoration': 'none'});
+          $(this).children().wrapAll(link);
+
+    });
+  }
+    
+  function updateProductPage(url) {
+
+        window.open(url);
+      
+  }
 
 </script>
 
