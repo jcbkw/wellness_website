@@ -9,11 +9,31 @@
   <script>
 
    $(document).ready(function () {
-
+    
     $("#productName").text(getQueryVariable("prodName"));
+    
+    $.getJSON("product-data.json?", successFn)
 
    });
  
+   function successFn(result) {
+
+    var prod = getQueryVariable("prodId");
+    
+    $.each(result.products, function() {
+
+      if(prod === this.prod_id) {
+
+        $("#productPrice").text(this.retail_price);
+        $("#productStock").text(this.in_stock);
+        $("#productDesc").text(this.description);
+
+      }
+
+    })
+            
+  }
+
 
    function getQueryVariable(variable) {
 

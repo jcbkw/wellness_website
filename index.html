@@ -93,8 +93,6 @@
     $(".menu-icon").attr("type", "checkbox")
                    .attr("checked","checked");
 
-
-
   } 
 </script>
 
@@ -124,9 +122,10 @@
           },
           href = "product.html?" + $.param(parameters);
           
+          
           productItem.children()
                      .wrapAll(
-                        $("<a>").attr("href", href)
+                        $("<a>").attr({"href": href, "target": "_blank"})
                                 .css('text-decoration', 'none')
                       );
 
