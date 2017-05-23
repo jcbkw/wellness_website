@@ -122,10 +122,13 @@
               prodId: productItem.data("prod_id"),
               prodName: productItem.find(".product-name").text()
           },
-          href = "product.html?" + $.param(parameters),
-          link = $("<a>").attr({"href": href});
-          link.css({'text-decoration': 'none'});
-          $(this).children().wrapAll(link);
+          href = "product.html?" + $.param(parameters);
+          
+          productItem.children()
+                     .wrapAll(
+                        $("<a>").attr("href", href)
+                                .css('text-decoration', 'none')
+                      );
 
     });
   }
